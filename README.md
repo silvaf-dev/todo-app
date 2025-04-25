@@ -18,10 +18,19 @@ It's a minimalist app created with React, Express.js and SQLite.
 3. ``npm start``
 
 # API documentation
-* GET /todos to read all tasks
-* POST /todos to create a task
-* PUT /todos/:id to update completion or text
-* DELETE /todos/:id to remove a task
+* GET ``/todos`` to read all tasks
+* POST ``/todos`` to create a task
+* PUT ``/todos/:id`` to update completion or text
+* DELETE ``/todos/:id`` to remove a task
+
+Example:
+
+PUT ``/todos/123``
+```
+{
+    "completed": true
+}
+```
 
 # Connecting to Database
 1. Download [DBeaver Community](https://dbeaver.io/).
