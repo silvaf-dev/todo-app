@@ -8,14 +8,14 @@ It's a minimalist app created with React, Express.js and SQLite.
 [Install Node.js](https://nodejs.org/en/download)
 
 # Backend
-``cd todo-be``
-``npm install``
-``npm start``
+1. ``cd todo-be``
+2. ``npm install``
+3. ``npm start``
 
 # Frontend
-``cd todo-fe``
-``npm install``
-``npm start``
+1. ``cd todo-fe``
+2. ``npm install``
+3. ``npm start``
 
 # API documentation
 * GET /todos to read all tasks
