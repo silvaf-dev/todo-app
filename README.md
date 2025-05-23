@@ -4,6 +4,8 @@ This is a sample Todo List App I've created for teaching manual QA to newcomers,
 
 It's a minimalist app created with React, Express.js and SQLite.
 
+<img width="611" alt="image" src="https://github.com/user-attachments/assets/3e24bf93-5c5e-4850-a4e7-1768d6ca5b36" />
+
 # Prerequisites
 [Install Node.js](https://nodejs.org/en/download)
 
