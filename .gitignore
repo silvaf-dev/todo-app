@@ -1,3 +1,3 @@
-todo-fe/node_modules
-todo-be/node_modules
-todo-be/db.sqlite
+fe/node_modules
+be/node_modules
+be/db.sqlite

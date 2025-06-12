@@ -10,12 +10,12 @@ It's a minimalist app created with React, Express.js and SQLite.
 [Install Node.js](https://nodejs.org/en/download)
 
 # Backend
-1. ``cd todo-be``
+1. ``cd be``
 2. ``npm install``
 3. ``npm start``
 
 # Frontend
-1. ``cd todo-fe``
+1. ``cd fe``
 2. ``npm install``
 3. ``npm start``
 
