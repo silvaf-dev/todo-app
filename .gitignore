@@ -1,3 +1,12 @@
 fe/node_modules
+fe/build
 be/node_modules
 be/db.sqlite
+be/.env
+
+# Playwright
+e2e/node_modules/
+e2e/test-results/
+e2e/playwright-report/
+e2e/blob-report/
+e2e/playwright/.cache/

@@ -97,23 +97,25 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <h1 className="app-title">📝 Todo List</h1>
+      <h1 className="app-title" data-testid="todo-title">📝 Todo List</h1>
       <div className="input-group">
         <input
           type="text"
           placeholder="Add a todo"
           value={newTodo}
           onChange={(e) => setNewTodo(e.target.value)}
+          data-testid="todo-add-txt"
         />
-        <button onClick={addTodo}>Add</button>
+        <button data-testid="todo-add-btn" onClick={addTodo}>Add</button>
       </div>
-      <ul className="todo-list">
+      <ul className="todo-list" data-testid="todo-list">
         {todos.map((todo) => (
-          <li key={todo.id} className={todo.completed ? "completed" : ""}>
+          <li data-testid="todo-list-element" key={todo.id} className={todo.completed ? "completed" : ""}>
             <input
               type="checkbox"
               checked={todo.completed}
               onChange={(e) => toggleTodo(todo.id, e.target.checked)}
+              data-testid="todo-checkbox"
             />
             {editingId === todo.id ? (
               <>
@@ -121,13 +123,14 @@ export default function App() {
                   className="edit-input"
                   value={editingText}
                   onChange={(e) => setEditingText(e.target.value)}
+                  data-testid="todo-edit-txt"
                 />
-                <button onClick={() => saveEdit(todo.id)}>Save</button>
+                <button data-testid="todo-save-edit-btn" onClick={() => saveEdit(todo.id)}>Save</button>
               </>
             ) : (
               <>
-                <span>{todo.text}</span>
-                <button onClick={() => startEditing(todo.id, todo.text)}>
+                <span data-testid="todo-txt">{todo.text}</span>
+                <button data-testid="todo-edit-btn" onClick={() => startEditing(todo.id, todo.text)}>
                   Edit
                 </button>
               </>
@@ -135,14 +138,15 @@ export default function App() {
             <button
               onClick={() => deleteTodo(todo.id)}
               className="delete-btn"
+              data-testid="todo-delete-btn"
             >
               X
             </button>
           </li>
         ))}
       </ul>
-      {message && <div className="message success">{message}</div>}
-      {error && <div className="message error">{error}</div>}
+      {message && <div className="message success" data-testid="todo-success-msg">{message}</div>}
+      {error && <div className="message error" data-testid="todo-error-msg">{error}</div>}
     </div>
   );
 }

@@ -4,6 +4,14 @@ import cors from 'cors';
 import pkg from 'body-parser';
 import Todo from './models/Todo.js';
 import sequelize from './sequelize.js';
+import { postToChutes } from './ai/post-to-chutes.mjs';
+import { queryWrapper } from './ai/generate-query.mjs';
+import { chartWrapper } from './ai/generate-chart.mjs';
+
+import dotenv from 'dotenv';
+dotenv.config();
+
+const apiToken = process.env.CHUTES_API_KEY;
 
 const { json, urlencoded } = pkg;
 
@@ -51,6 +59,57 @@ app.delete('/todos/:id', async (req, res) => {
   if (!todo) return res.status(404).json({ error: 'Todo not found' });
   await todo.destroy();
   res.status(204).send();
+});
+
+app.post('/sql', async (req, res) => {
+  let { query } = req.body;
+
+  if (typeof query !== 'string' || query.trim() === '') {
+    return res.status(400).json({ error: 'Query must be a non-empty string' });
+  }
+
+  query = query.trim();
+  console.log('Executing SQL:', query);
+
+  try {
+    const [results, metadata] = await sequelize.query(query);
+    res.json(results);
+  } catch (err) {
+    console.error('SQL error:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+app.post('/generate', async (req, res) => {
+  const { prompt } = req.body;
+  if (!prompt) return res.status(400).json({ error: 'Prompt is required' });
+
+  try {
+    const raw = await postToChutes(apiToken, queryWrapper(prompt));
+    const clean = raw.trim().replace(/^```json\s*|```$/g, '');
+    const parsed = JSON.parse(clean);
+    res.json(parsed);
+  } catch (err) {
+    console.error('LLM error:', err);
+    res.status(500).json({ error: 'Failed to generate response from LLM' });
+  }
+});
+
+app.post('/format', async (req, res) => {
+  const { chartType, data } = req.body;
+  if (!chartType) return res.status(400).json({ error: 'chartType is required' });
+  else if (!data) return res.status(400).json({ error: 'data is required' });
+
+  try {
+    const raw = await postToChutes(apiToken, chartWrapper(chartType, data));
+    console.log('Format raw response: ' + raw);
+    const clean = raw.trim().replace(/^```json\s*|```$/g, '');
+    const parsed = JSON.parse(clean);
+    res.json(parsed);
+  } catch (err) {
+    console.error('LLM error:', err);
+    res.status(500).json({ error: 'Failed to generate response from LLM' });
+  }
 });
 
 app.listen(PORT, () => {
