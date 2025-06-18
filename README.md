@@ -39,3 +39,11 @@ PUT ``/todos/123``
 2. Create a new SQLite connection (install the driver if necessary).
 3. Go to SQL Editor > Open SQL Console
 4. Have fun running your queries!
+
+# Chatbot Integration
+1. Go to the [Chutes Page](https://chutes.ai/).
+2. Select DeepSeek V3 0324 (free).
+3. Under the API tab, look for the `Need an API token?` section and click on `Get one here`.
+4. Create an API key and save it.
+5. Create an `.env` on the `be` folder.
+6. Add `CHUTES_API_KEY=your_api_key` where `your_api_key` is the key you obtained at Chutes. Save.
