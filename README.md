@@ -23,11 +23,10 @@ It's a minimalist app created with React, Express.js and SQLite.
 GET ``/todos`` — List all todos
 
 POST ``/todos`` — Create new todo
-
-Body: ```{ "text": "My new task" }```
+* Body: ```{ "text": "My new task" }```
 
 PUT ``/todos/:id`` — Update a todo
-Body (partial or full): ```{ "text": "Updated", "completed": true }```
+* Body (partial or full): ```{ "text": "Updated", "completed": true }```
 
 DELETE ``/todos/:id`` — Delete a todo
 
