@@ -1,0 +1,30 @@
+[2025-06-27T14:32:00.123Z] [DB] Database synced
+[2025-06-27T14:32:00.124Z] [SERVER] Server running at http://localhost:3001
+
+[2025-06-27T14:33:05.112Z] [HTTP] POST /todos
+[2025-06-27T14:33:05.113Z] [DB] Created todo: "Buy groceries"
+
+[2025-06-27T14:33:12.221Z] [HTTP] GET /todos
+[2025-06-27T14:33:12.222Z] [DB] Retrieved 1 todos
+
+[2025-06-27T14:33:18.503Z] [HTTP] PUT /todos/1
+[2025-06-27T14:33:18.504Z] [DB] Updated todo ID 1: { text: "Buy groceries and cook dinner", completed: true }
+
+[2025-06-27T14:33:25.720Z] [HTTP] DELETE /todos/1
+[2025-06-27T14:33:25.721Z] [DB] Deleted todo ID 1
+
+[2025-06-27T14:34:10.199Z] [HTTP] POST /sql
+[2025-06-27T14:34:10.200Z] [SQL] Executing SQL: SELECT * FROM Todos;
+[2025-06-27T14:34:10.202Z] [SQL] Returned 0 rows
+
+[2025-06-27T14:34:25.001Z] [HTTP] POST /generate
+[2025-06-27T14:34:25.002Z] [AI] Generating SQL from prompt: "Show completed todos"
+[2025-06-27T14:34:25.310Z] [AI] Generated: SELECT * FROM Todos WHERE completed = true;
+
+[2025-06-27T14:34:55.410Z] [HTTP] POST /format
+[2025-06-27T14:34:55.411Z] [AI] Generating chart format for: bar
+[2025-06-27T14:34:55.600Z] [AI] Format raw response: { "type": "bar", "data": [...] }
+
+[2025-06-27T14:35:05.821Z] [ERROR] [AI] LLM error: SyntaxError: Unexpected token }
+[2025-06-27T14:35:05.821Z] [ERROR] [AI] LLM error: SyntaxError: Unexpected token {
+[2025-06-27T14:35:05.822Z] [HTTP] POST /generate — Failed to generate response from LLM
